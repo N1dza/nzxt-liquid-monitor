@@ -1,20 +1,26 @@
-const params = (new URL(window.location.href)).searchParams
-const source = params.get('source') || 'liquid'
+const params = (new URL(window.location.href)).searchParams;
+const source = params.get('source') || 'liquid';
 
-window.document.getElementById('source').innerText = source
+window.document.getElementById('source').innerText = source;
 
+// Funkcija za ažuriranje temperature
 function updateTemperature(temperature) {
-  window.document.getElementById('temperature').innerText = temperature
+  window.document.getElementById('temperature').innerText = temperature;
 }
 
-// NZXT API: koristi 'liquid' za temperaturu tečnosti
+// Proveri podatke kada se ažurira monitoring
 window.nzxt = {
   v1: {
     onMonitoringDataUpdate: (data) => {
-        const { liquid } = data  // Preuzimanje podataka za tečnost
-        if (liquid && liquid.length > 0) {
-          updateTemperature(liquid[0].temperature)  // Prikazivanje temperature tečnosti
-        }
+      console.log(data);  // Ispisuje celu strukturu podataka u konzolu
+
+      // Preuzimanje podataka o tečnosti
+      const liquid_temperature = data.liquid_temperature;  // Pretpostavka: liquid_temperature je naziv iz API-a
+      if (liquid_temperature !== undefined) {
+        updateTemperature(liquid_temperature);  // Ažuriraj temperaturu
+      } else {
+        console.log("Nema podataka o tečnosti!");
+      }
     }
   }
 }
