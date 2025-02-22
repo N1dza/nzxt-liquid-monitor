@@ -1,4 +1,4 @@
-// Import NZXT tipove, obavezno je da koristiš paket @nzxt/web-integrations-types
+// Import NZXT tipove
 import { MonitoringData } from "@nzxt/web-integrations-types/v1";
 
 // Ovaj kod inicijalizuje NZXT objekat i postavlja funkciju za ažuriranje podataka
@@ -17,7 +17,7 @@ window.nzxt = {
 
       // Ako postoji, ažuriramo temperaturu na stranici
       if (liquidTemperature !== undefined) {
-        updateTemperature(liquidTemperature);
+        updateTemperature(liquidTemperature); // Ažuriraj temperaturu
       } else {
         console.log("Nema podataka o tečnosti!");
       }
@@ -27,5 +27,9 @@ window.nzxt = {
 
 // Funkcija koja ažurira prikaz temperature na web stranici
 function updateTemperature(temperature) {
-  window.document.getElementById('temperature').innerText = temperature + "°C";
+  const temperatureElement = window.document.getElementById('temperature');
+  
+  if (temperatureElement) {
+    temperatureElement.innerText = temperature + "°C"; // Ažurira temperaturu u HTML-u
+  }
 }
