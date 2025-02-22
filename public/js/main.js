@@ -6,18 +6,33 @@ window.nzxt = {
   v1: {
     // Funkcija koja se poziva svaki put kada API ažurira podatke
     onMonitoringDataUpdate: (data: MonitoringData) => {
-      // Izdvajamo samo Kraken podatke
-      const { kraken } = data;
+      // Logovanje celokupnog odgovora
+      console.log(data); // Ovdje ćemo proveriti strukturu podataka
 
-      // Logovanje podataka specifičnih za Kraken uređaj
+      // Izdvajamo sve relevantne podatke
+      const { cpus, gpus, ram, kraken, liquids, liq } = data;
+
+      // Logovanje specifičnih podataka
       console.log("Kraken Data: ", kraken);
+      console.log("Liquid Data: ", liquids);
+      console.log("Liq Data: ", liq);
 
-      // Ako postoje podaci o temperaturi tečnosti, ažuriraj prikaz
+      // Ako imamo podatke o tečnosti, ažuriraj temperaturu
+      let temperature = null;
+
       if (kraken && kraken.temperature !== undefined) {
-        console.log("Kraken Liquid Temperature: ", kraken.temperature); // Loguj temperaturu
-        updateTemperature(kraken.temperature); // Ažuriraj temperaturu
+        temperature = kraken.temperature; // Ako postoji, uzimamo temperaturu iz Kraken-a
+      } else if (liquids && liquids[0]?.temperature !== undefined) {
+        temperature = liquids[0].temperature; // Ako postoji, uzimamo temperaturu iz Liquids
+      } else if (liq && liq[0]?.temperature !== undefined) {
+        temperature = liq[0].temperature; // Ako postoji, uzimamo temperaturu iz Liq
+      }
+
+      // Ako smo našli temperaturu, ažuriramo prikaz
+      if (temperature !== null) {
+        updateTemperature(temperature); // Ažurira temperaturu
       } else {
-        console.log("Nema podataka o tečnosti za Kraken!");
+        console.log("Nema podataka o tečnosti!");
       }
     }
   }
