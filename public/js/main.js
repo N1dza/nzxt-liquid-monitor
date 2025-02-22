@@ -1,28 +1,15 @@
-// NZXT API integracija za čitanje podataka o temperaturi
+// NZXT API integracija za čitanje podataka o Kraken temperaturi
 window.nzxt = {
   v1: {
     onMonitoringDataUpdate: function(data) {
-      // Izdvajanje podataka o tečnosti (kraken, liquids ili liq)
-      const { kraken, liquids, liq } = data;
+      // Izdvajanje podataka o Kraken-u
+      const { kraken } = data;
 
-      // Proveravamo koje podatke imamo
-      let temperature = null;
+      // Uzimamo samo Kraken temperaturu (liquidTemperature)
+      const temperature = kraken.liquidTemperature;
 
-      // Ako imamo podatke o Kraken tečnosti
-      if (kraken && kraken.temperature !== undefined) {
-        temperature = kraken.temperature;
-      }
-      // Ako imamo podatke o Liquids tečnosti
-      else if (liquids && liquids.length > 0 && liquids[0].temperature !== undefined) {
-        temperature = liquids[0].temperature;
-      }
-      // Ako imamo podatke o Liq tečnosti
-      else if (liq && liq.length > 0 && liq[0].temperature !== undefined) {
-        temperature = liq[0].temperature;
-      }
-
-      // Ako smo dobili temperaturu, ažuriraj je na stranici
-      if (temperature !== null) {
+      // Ako imamo temperaturu, ažuriramo prikaz na stranici
+      if (temperature !== undefined) {
         updateTemperature(temperature);
       }
     }
