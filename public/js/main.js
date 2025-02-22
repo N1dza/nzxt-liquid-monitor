@@ -22,6 +22,6 @@ function updateTemperature(temperature) {
   
   if (temperatureElement) {
     // Ažuriraj prikaz temperature
-    temperatureElement.innerText = temperature; // Ispis broja
+    temperatureElement.innerText = temperature; // Ispis temperature
   }
 }
