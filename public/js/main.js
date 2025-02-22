@@ -19,12 +19,12 @@ window.nzxt = {
         console.log("Kraken temperature: ", kraken.temperature); // Pokazivanje tačne temperature za Kraken
       }
       
-      if (liquids) {
-        console.log("Liquids temperature: ", liquids[0]?.temperature); // Pokazivanje temperature za Liquid
+      if (liquids && liquids.length > 0) {
+        console.log("Liquids temperature: ", liquids[0].temperature); // Pokazivanje temperature za Liquid
       }
       
-      if (liq) {
-        console.log("Liq temperature: ", liq[0]?.temperature); // Pokazivanje temperature za Liq
+      if (liq && liq.length > 0) {
+        console.log("Liq temperature: ", liq[0].temperature); // Pokazivanje temperature za Liq
       }
 
       // Ako imamo podatke o tečnosti, ažuriraj temperaturu
@@ -33,9 +33,9 @@ window.nzxt = {
       // Ažuriranje temperature iz različitih izvora
       if (kraken && kraken.temperature !== undefined) {
         temperature = kraken.temperature; // Ako postoji, uzimamo temperaturu iz Kraken-a
-      } else if (liquids && liquids[0]?.temperature !== undefined) {
+      } else if (liquids && liquids.length > 0 && liquids[0].temperature !== undefined) {
         temperature = liquids[0].temperature; // Ako postoji, uzimamo temperaturu iz Liquids
-      } else if (liq && liq[0]?.temperature !== undefined) {
+      } else if (liq && liq.length > 0 && liq[0].temperature !== undefined) {
         temperature = liq[0].temperature; // Ako postoji, uzimamo temperaturu iz Liq
       }
 
