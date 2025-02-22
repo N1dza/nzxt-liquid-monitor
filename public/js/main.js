@@ -7,13 +7,13 @@ function updateTemperature(temperature) {
   window.document.getElementById('temperature').innerText = temperature
 }
 
-// NZXT API: koristi 'liquids' umesto 'cpus'
+// NZXT API: koristi 'liquid' za temperaturu tečnosti
 window.nzxt = {
   v1: {
     onMonitoringDataUpdate: (data) => {
-        const { liquids } = data  // Preuzimanje podataka za tečnost
-        if (liquids && liquids.length > 0) {
-          updateTemperature(liquids[0].temperature)  // Prikazivanje temperature tečnosti
+        const { liquid } = data  // Preuzimanje podataka za tečnost
+        if (liquid && liquid.length > 0) {
+          updateTemperature(liquid[0].temperature)  // Prikazivanje temperature tečnosti
         }
     }
   }
