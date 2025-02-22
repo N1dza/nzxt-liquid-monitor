@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="stylesheet" href="./public/css/styles.css"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NZXT Kraken Temperature</title>
+    <link rel="stylesheet" href="./public/css/styles.css" />
   </head>
   <body>
     <div class="container">
-      <img id="background" src="./public/image/background.png" />
+      <!-- Pozadina slike -->
+      <img id="background" src="./public/image/background.png" alt="Background" />
+
+      <!-- Sekcija za prikaz podataka -->
       <div class="data">
-        <h1 id="source">liquid</h1>  <!-- Ovdje prikazujemo "liquid" -->
+        <h1 id="source">Kraken Liquid Temperature</h1>
         <p>
-          <span id="temperature">30</span>°C  <!-- Temperatura će biti ažurirana putem JS -->
+          <span id="temperature">--</span>°C <!-- Početna vrednost temperature -->
         </p>
       </div>
     </div>
-    <script type="text/javascript" src="./public/js/main.js"></script>
+
+    <!-- Učitavanje skripte koja omogućava funkcionalnost -->
+    <script type="module" src="./public/js/main.js"></script>
   </body>
 </html>
