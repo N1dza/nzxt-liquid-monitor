@@ -21,6 +21,7 @@ function updateTemperature(temperature) {
   const temperatureElement = window.document.getElementById('temperature');
   
   if (temperatureElement) {
-    temperatureElement.innerText = temperature + "°C"; // Ažuriraj prikaz temperature
+    // Ažuriraj prikaz temperature bez dodavanja "°C" ponovo
+    temperatureElement.innerText = temperature; // Samo broj, bez "°C"
   }
 }
